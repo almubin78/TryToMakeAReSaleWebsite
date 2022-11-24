@@ -8,5 +8,7 @@
 adminEmail: almubin78@gmail.com
 
 adminPassword: almubin78@HeroPass
+https://github.com/programming-hero-web-course-4/b612-used-products-resale-clients-side-almubin78
+
 # ========= IMPORTANT ========
 * A user does not see data when they visit a route, does not see the ad after posting the advertisement without reloading the site, or gets logged out when visiting a private route right after signing up. In that case, etc., then you may lose a significant mark for that.
