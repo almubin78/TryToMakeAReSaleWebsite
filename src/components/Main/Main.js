@@ -1,9 +1,12 @@
 import React from 'react';
+import { Outlet } from 'react-router-dom';
+import Menubar from '../shared/Menubar';
 
 const Main = () => {
     return (
         <div>
-            <h2>This is main</h2>
+            <Menubar></Menubar>
+            <Outlet></Outlet>
         </div>
     );
 };
