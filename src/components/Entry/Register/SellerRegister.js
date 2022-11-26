@@ -1,56 +1,57 @@
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
-import { Context } from '../../../firebase/FirebaseAuthProvider';
-import useToken from '../../../hooks/useToken';
+import { Link } from 'react-router-dom';
+// import { context } from '../../../firebase/FirebaseAuthProvider';
+// import useToken from '../../../hooks/useToken';
 
 const SellerRegister = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const { userCreate, updateUser } = useContext(Context);
+    // const { userCreate, updateUser } = useContext(context);
 
-    const [registerError, setRegisterError] = useState('')
-    const [registerUserEmail, setRegisterUserEmail] = useState('');
-    const [issueToken] = useToken(registerUserEmail);
-    const navigate = useNavigate();
+    // const [registerError, setRegisterError] = useState('')
+    // const [registerUserEmail, setRegisterUserEmail] = useState('');
+    // const [issueToken] = useToken(registerUserEmail);
 
 
     const handleSignUp = data => {
         console.log(data);
+
     }
     return (
         <div className='container'>
-            <div className='w-75'>
-                <h2>SignUp</h2>
+            <div className='w-100 border border-2 p-4 mt-4'>
+                <h2 className='text-center'>SignUp</h2>
                 <form onSubmit={handleSubmit(handleSignUp)}>
                     <div className="">
-                        <label className="label"> <span className="text-primary">Name</span></label>
-                        <input type="text" {...register("name", {
+                        <label className="label"> <span className="text-primary">Name</span></label> <br />
+                        <input defaultValue='Marks' type="text" {...register("name", {
                             required: "Name is Required"
-                        })} className="input input-bordered w-full" />
+                        })} className="form-control" />
                         {errors.name && <p className='text-danger'>{errors.name.message}</p>}
                     </div>
                     <div className="">
-                        <label className="label"> <span className="text-primary">Name</span></label>
-                        <input type="email" {...register("email", {
+                        <label className="label"> <span className="text-primary">Email</span></label>
+                        <input defaultValue='almubin78@gmail.com' type="email" {...register("semail", {
                             required: "Email is Required"
-                        })} className="input input-bordered w-full" />
-                        {errors.email && <p className='text-danger'>{errors.email.message}</p>}
+                        })} className="form-control" />
+                        {errors.semail && <p className='text-danger'>{errors.semail.message}</p>}
                     </div>
                     <div className="">
-                        <label className="label"> <span className="text-primary">Name</span></label>
-                        <input type="password" {...register("password", {
+                        <label className="label"> <span className="text-primary">Password</span></label>
+                        <input defaultValue='almubin78@gmail.com' type="password" {...register("spassword", {
                             required: "Password is Required"
-                        })} className="input input-bordered w-full" />
-                        {errors.password && <p className='text-danger'>{errors.password.message}</p>}
+                        })} className="form-control" />
+                        {errors.spassword && <p className='text-danger'>{errors.spassword.message}</p>}
                     </div>
-                    <div className="">
-                        <label className="label"> <span className="text-primary">Name</span></label>
-                        <input type="file" {...register("Image", {
+                    {/* <div className="">
+                        <label className="label"> <span className="text-primary">Image</span></label>
+                        <input defaultValue='' type="file" {...register("sImage", {
                             required: "Image is Required"
-                        })} className="input input-bordered w-full" />
-                        {errors.Image && <p className='text-danger'>{errors.Image.message}</p>}
-                    </div>
-                    <button className='btn btn-primary' type='submit'>Register</button>
+                        })} className="form-control" />
+                        {errors.sImage && <p className='text-danger'>{errors.sImage.message}</p>}
+                    </div> */}
+                    <button className='btn btn-primary mt-1' type='submit'>Register</button>
+                    <p className='text-center'>Already Account?<Link to='/login'>Login</Link></p>
                 </form>
             </div>
         </div>

@@ -6,17 +6,20 @@ import UserRegister from './UserRegister';
 
 const RegisterContainer = () => {
     useDynamicTitle('Register');
-    const [registerUser,setRegisterUser] = useState(true)
+    const [registerUser, setRegisterUser] = useState(true)
     return (
-        <div className='container w-75'>
-            <h1>Register Now</h1>
+        <div className='container w-50 align-middle'>
+            <h1 className='text-center'>Register Now</h1>
+            <div className='text-center'>
+                <button className='btn btn-danger mx-1' onClick={() => setRegisterUser(true)}>As User Register</button>
+                <button className='btn btn-danger mx-1' onClick={() => setRegisterUser(false)}>As Seller Register</button>
+
+            </div>
             <div>
-                <button onClick={() => setRegisterUser(true)}>As User Register</button>
-                <button onClick={() => setRegisterUser(false)}>As Seller Register</button>
                 {
                     registerUser ? <UserRegister></UserRegister> : <SellerRegister></SellerRegister>
                 }
-                <p>Already Account?<Link to='/login'>Login</Link></p>
+                
             </div>
         </div>
     );

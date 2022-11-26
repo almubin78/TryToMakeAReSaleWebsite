@@ -16,6 +16,7 @@ const Menubar = () => {
                             <Link className='mx-2 text-decoration-none text-white' to='/'>Home</Link>
                             <Link className='mx-2 text-decoration-none text-white' to='/dashboard'>Dashboard</Link>
                             <Link id='Login' className='mx-2 text-decoration-none text-white' to='/login'>Login</Link>
+                            <Link id='Login' className='mx-2 text-decoration-none text-white' to='/tempCollection'>AddSomeData</Link>
 
                         </Nav>
                     </Navbar.Collapse>
