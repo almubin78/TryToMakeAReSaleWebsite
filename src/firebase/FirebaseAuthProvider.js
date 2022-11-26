@@ -7,6 +7,7 @@ export const context = createContext();
 const auth = getAuth(app);
 const googleProvider = new GoogleAuthProvider();
 const githubProvider = new GithubAuthProvider();
+
 const FirebaseAuthProvider = ({child}) => {
     const [user,setUser] = useState(null);
     const [loading, setLoading] =useState(true);
@@ -36,7 +37,7 @@ const FirebaseAuthProvider = ({child}) => {
     }
     useEffect(()=>{
         const unsubscribe = onAuthStateChanged(auth,(stateOfUser)=>{
-            console.log(stateOfUser);
+            // console.log(stateOfUser);
             setUser(stateOfUser);
             setLoading(false)
         })

@@ -3,6 +3,7 @@ import old from '../../phoneImg/c1/1.jpg'
 import smart from '../../phoneImg/c1/smart.webp'
 import button from '../../phoneImg/c1/button.jpg'
 import { Button, Col, Container, Row } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 const ProductsCategories = () => {
     const phoneCatagorys = [
         {name:"Old Phone",img:old},
@@ -11,7 +12,7 @@ const ProductsCategories = () => {
 
     ]
     return (
-        <div>
+        <div className='w-75 mx-auto mb-5'>
             <h1>Please Select A Category From below</h1>
             <div>
                 <Container>
@@ -19,7 +20,7 @@ const ProductsCategories = () => {
                         {
                             phoneCatagorys.map(sp=>
                             <Col>
-                               <div class="card"
+                               <div class="card mt-3"
                                 style={{ width: '18rem', height: '20rem' }}>
                                 <img
                                     style={{ width: '18rem', height: '20rem', overflow: 'hidden' }}
@@ -29,7 +30,7 @@ const ProductsCategories = () => {
                                 <div class="card-body">
                                     <h2 class="card-title">{sp.name}</h2>
                                 </div>
-                                <Button variant="primary">View All</Button>
+                                <Button variant="primary"><Link to='/category' className='text-white'>View All</Link></Button>
                             </div>
                             </Col>)
                         }

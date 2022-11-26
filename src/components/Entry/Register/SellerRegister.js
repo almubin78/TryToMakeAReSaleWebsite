@@ -1,12 +1,12 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
-// import { context } from '../../../firebase/FirebaseAuthProvider';
+import { context } from '../../../firebase/FirebaseAuthProvider';
 // import useToken from '../../../hooks/useToken';
 
 const SellerRegister = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
-    // const { userCreate, updateUser } = useContext(context);
+    const  {userCreate}  = useContext(context);
 
     // const [registerError, setRegisterError] = useState('')
     // const [registerUserEmail, setRegisterUserEmail] = useState('');
@@ -15,6 +15,7 @@ const SellerRegister = () => {
 
     const handleSignUp = data => {
         console.log(data);
+        userCreate(data.semail)
 
     }
     return (

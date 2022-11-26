@@ -4,6 +4,7 @@ import Dashboard from "../components/Dashboard/Dashboard";
 import LoginContainer from "../components/Entry/Login/LoginContainer";
 import RegisterContainer from "../components/Entry/Register/RegisterContainer";
 import TempData from "../components/TempData";
+import AllProducts from "../components/AllProducts/AllProducts";
 const { createBrowserRouter } = require("react-router-dom");
 
 
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
             {
                 path:'/tempCollection',
                 element:<TempData></TempData>
+            },
+            {
+                path:'/category',
+                element:<AllProducts></AllProducts>
             }
         ]
     },
