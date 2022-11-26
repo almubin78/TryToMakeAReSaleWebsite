@@ -5,6 +5,7 @@ import LoginContainer from "../components/Entry/Login/LoginContainer";
 import RegisterContainer from "../components/Entry/Register/RegisterContainer";
 import TempData from "../components/TempData";
 import AllProducts from "../components/AllProducts/AllProducts";
+import PrivateRoute from "../components/PrivateSection/PrivateRoute";
 const { createBrowserRouter } = require("react-router-dom");
 
 
@@ -37,7 +38,7 @@ const router = createBrowserRouter([
     },
     {
         path:'/dashboard',
-        element:<Dashboard></Dashboard>
+        element:<PrivateRoute><Dashboard></Dashboard></PrivateRoute>
     }
 ])
 export default router;

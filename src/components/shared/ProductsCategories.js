@@ -20,15 +20,15 @@ const ProductsCategories = () => {
                         {
                             phoneCatagorys.map(sp=>
                             <Col>
-                               <div class="card mt-3"
+                               <div className="card mt-3"
                                 style={{ width: '18rem', height: '20rem' }}>
                                 <img
                                     style={{ width: '18rem', height: '20rem', overflow: 'hidden' }}
                                     src={sp.img}
-                                    class="card-img-top img-fluid"
+                                    className="card-img-top img-fluid"
                                     alt="..." />
-                                <div class="card-body">
-                                    <h2 class="card-title">{sp.name}</h2>
+                                <div className="card-body">
+                                    <h2 className="card-title">{sp.name}</h2>
                                 </div>
                                 <Button variant="primary"><Link to='/category' className='text-white'>View All</Link></Button>
                             </div>
