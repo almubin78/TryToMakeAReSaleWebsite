@@ -45,7 +45,7 @@ const SellerRegister = () => {
 
 
         const saveUser = (name, email) => {
-            const user = { name, email, location, phone, role }
+            const user = { name, email, location, phone, role,verifiedSeller:false }
             fetch('http://localhost:5000/users', {
                 method: 'POST',
                 headers: {
@@ -63,7 +63,7 @@ const SellerRegister = () => {
     }
     return (
         <div className='container'>
-            <div className='w-100 border border-2 p-4 mt-4'>
+            <div className='w-75  border border-2 p-5 mt-4 mx-auto'>
                 <h2 className='text-center'>SignUp as a Seller/Buyer</h2>
                 <form onSubmit={handleSubmit(handleSignUp)}>
                     <div className="">
@@ -90,14 +90,14 @@ const SellerRegister = () => {
                     <div className="">
                         <label className="label"> <span className="text-primary">Location</span></label>
                         <input type="text" {...register("location", {
-                            required: "Please Provide your location. It will use when You Try To purchase/Sell a product"
+                            required: "Please Provide your location. It will be used when You Try To purchase/Sell a product"
                         })} className="form-control" />
                         {errors.location && <p className='text-danger'>{errors.location.message}</p>}
                     </div>
                     <div className="">
                         <label className="label"> <span className="text-primary">Phone</span></label>
                         <input type="text" {...register("phone", {
-                            required: "Please Provide your Phone Number. It will use when You Try To purchase /Sell a product"
+                            required: "Please Provide your Phone Number. It will be used when You Try To purchase /Sell a product"
                         })} className="form-control" />
                         {errors.phone && <p className='text-danger'>{errors.phone.message}</p>}
                     </div>

@@ -1,27 +1,36 @@
 import React, { useEffect, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
+import toast from 'react-hot-toast';
 
 const ListOfSeller = () => {
-    const [sellers, setSellers] = useState([]);
-    const [verified,setVerified] = useState(true);
-    //ekhane fetch er bodole useQuery use korte hobe refetch() er jonno
-    useEffect(() => {
-        fetch('http://localhost:5000/sellers')
-            .then(res => res.json())
-            .then(data => {
-                setSellers(data);
-            })
-    }, []);
+    const { data: users = [], refetch } = useQuery({
+        queryKey: ['users'],
+        queryFn: async () => {
+            const res = await fetch('http://localhost:5000/sellers');
+            const data = await res.json();
+            console.log(data);
+            return data
+        }
+    })
 
     const handleVerifySeller = id => {
         console.log(id);
-        setVerified(false)
+        fetch(`http://localhost:5000/allUsers/verified/${id}`, {
+            method: 'PUT',
+            headers: {
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.modifiedCount > 0) {
+                    toast.success(' seller verified successful.');
+                    refetch();
+                }
+            })
     }
     return (
         <div>
-            {/* <h1>Name: {name}</h1>
-            <h1>Name: {name}</h1>
-            <h1>Name: {name}</h1> */}
-
 
             <table className="table">
                 <thead>
@@ -35,18 +44,34 @@ const ListOfSeller = () => {
                 </thead>
                 <tbody>
                     {
-                        sellers.map((sel, i) =>
+                        users.map((sel, i) =>
                             <tr key={sel._id}>
                                 <th scope="row">{i + 1}</th>
-                                <td>{sel.name}</td>
+                                <td className='position-relative'>{sel.name}{sel.verifiedSeller === true &&
+
+                                    <>
+                                    <span class="position-absolute top-50 start-50 translate-middle p-2 bg-success border border-light rounded-circle">
+                                        <span class="visually-hidden">New alerts</span>
+                                    </span>
+                                    </>}
+                                </td>
                                 <td>{sel.location}</td>
                                 <td>{sel.phone}</td>
-                                {verified ?
-                                    <th>
-                                        {sel?.role !== 'admin' && <button className='btn btn-warning' onClick={() => handleVerifySeller(sel._id)}>verify seller</button>}
+                                <th>
+                                    {
+                                        sel.verifiedSeller === true ?
+                                            <p>verifyed</p>
 
-                                    </th>:
-                                    <p>Verified</p>}
+                                            :
+                                            <>
+                                                {sel?.role !== 'admin' && <button className='btn btn-info' onClick={() => handleVerifySeller(sel._id)}>verify seller</button>}
+                                            </>
+                                    }
+
+                                </th>
+                                <th>
+                                    <button className='btn btn-danger'>Delete Seller</button>
+                                </th>
                             </tr>
                         )
                     }

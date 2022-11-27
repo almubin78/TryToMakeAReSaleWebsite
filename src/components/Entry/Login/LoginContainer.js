@@ -1,34 +1,33 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
+import { Context } from '../../../firebase/FirebaseAuthProvider';
+import useToken from '../../../hooks/useToken';
 import useDynamicTitle from '../../shared/useDynamicTitle';
-import SellerLogin from './SellerLogin';
-import UserLogin from './UserLogin';
 
 const LoginContainer = () => {
-    const [userLogin, setUserLogin] = useState(true);
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const {logIn,googleLogin}=useContext(Context);
     useDynamicTitle('Login');
-
-    const [loginError,setLoginError] = useState('')
+    const [loginError,setLoginError,loading] = useState('')
+    const [loginUserEmail,setLoginUserEmail]= useState('')
+    const [issueToken] = useToken(loginUserEmail)
+    
+    const { register, handleSubmit, formState: { errors } } = useForm();
     const handleLogin = data =>{
-
+        const {email} = data;
+        setLoginUserEmail(email)
+        logIn(data.email,data.password)
+        .then(res=>{
+            const user = res.user;
+            console.log(user);
+        })
+        .catch(err=>{
+            setLoginError(err.message)
+        })
     }
     return (
 
-        /* 
-            <div className='container w-75 mx-auto'>
-            <h1>Login Now</h1>
-            <div>
-                <button onClick={() => setUserLogin(true)}>As User Login</button>
-                <button onClick={() => setUserLogin(false)}>As Seller Login</button>
-                {
-                    userLogin ? <UserLogin></UserLogin> : <SellerLogin></SellerLogin>
-                }
-                <p>New to Our Site?<Link to='/register'>Register</Link></p>
-            </div>
-        </div>
-        */
+       
         <div className='container'>
             <div className='w-100 border border-2 p-4 mt-4'>
                 <h2 className='text-center'>Login</h2>

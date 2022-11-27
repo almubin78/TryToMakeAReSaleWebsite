@@ -3,6 +3,7 @@ import Advetise from './Advetise';
 // import Banner from './Banner';
 import Footer from './Footer';
 import ProductsCategories from './ProductsCategories';
+import Servicing from './Servicing';
 import useDynamicTitle from './useDynamicTitle';
 
 const Home = () => {
@@ -12,6 +13,7 @@ const Home = () => {
             {/* <Banner></Banner> */}
             <ProductsCategories></ProductsCategories>
             <Advetise></Advetise>
+            <Servicing></Servicing>
             <Footer></Footer>
         </div>
     );

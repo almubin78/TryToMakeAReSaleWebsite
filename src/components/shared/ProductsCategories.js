@@ -16,8 +16,9 @@ const ProductsCategories = () => {
         navigate('/category')
     }
     return (
-        <div className='w-75 mx-auto mb-5'>
+        <div className='container w-75 mx-auto mb-5'>
             <h1>Please Select A Category From below</h1>
+            <hr className='text-primary fw-bold mb-3'/>
             <div>
                 <Container>
                     <Row>
