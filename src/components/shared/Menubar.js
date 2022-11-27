@@ -20,6 +20,7 @@ const Menubar = () => {
                             <Link className='mx-2 text-decoration-none text-white' to='/'>Home</Link>
                             {user && <Link className='mx-2 text-decoration-none text-white' to='/dashboard'>Dashboard</Link>}
                             <Link className='mx-2 text-decoration-none text-white' to='/blogs'>Blogs</Link>
+                            <Link className='mx-2 text-decoration-none text-white' to='/addAPost'>Make A Post</Link>
                             {
                                 user?.email ?
                                     <button className='btn btn-primary position-absolute top-0 end-0' onClick={handleLogOut}>LogOut</button>

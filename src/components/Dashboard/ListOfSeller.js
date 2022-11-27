@@ -18,7 +18,7 @@ const ListOfSeller = () => {
         fetch(`http://localhost:5000/allUsers/verified/${id}`, {
             method: 'PUT',
             headers: {
-                authorization: `bearer ${localStorage.getItem('accessToken')}`
+                authorization: `bearer ${localStorage.getItem('myToken')}`
             }
         })
             .then(res => res.json())
@@ -50,8 +50,8 @@ const ListOfSeller = () => {
                                 <td className='position-relative'>{sel.name}{sel.verifiedSeller === true &&
 
                                     <>
-                                    <span class="position-absolute top-50 start-50 translate-middle p-2 bg-success border border-light rounded-circle">
-                                        <span class="visually-hidden">New alerts</span>
+                                    <span className="position-absolute top-50 start-50 translate-middle p-2 bg-success border border-light rounded-circle">
+                                        <span className="visually-hidden">New alerts</span>
                                     </span>
                                     </>}
                                 </td>

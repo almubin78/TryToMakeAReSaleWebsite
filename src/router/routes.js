@@ -7,6 +7,7 @@ import TempData from "../components/TempData";
 import AllProducts from "../components/AllProducts/AllProducts";
 import PrivateRoute from "../components/PrivateSection/PrivateRoute";
 import Blogs from "../components/shared/Blogs";
+import Posts from "../components/Posts/Posts";
 const { createBrowserRouter } = require("react-router-dom");
 
 
@@ -38,6 +39,11 @@ const router = createBrowserRouter([
             {
                 path:'/category',
                 element:<AllProducts></AllProducts>
+            }
+            ,
+            {
+                path:'/addAPost',
+                element:<Posts></Posts>
             }
         ]
     },
