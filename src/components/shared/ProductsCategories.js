@@ -6,9 +6,9 @@ import { Button, Col, Container, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 const ProductsCategories = () => {
     const phoneCatagorys = [
-        {name:"Old Phone",img:old},
-        {name:"Smart Phone",img:smart},
-        {name:"Button Phone",img:button},
+        {id:1,name:"Old Phone",img:old},
+        {id:2,name:"Smart Phone",img:smart},
+        {id:3,name:"Button Phone",img:button},
 
     ]
     return (
@@ -19,7 +19,7 @@ const ProductsCategories = () => {
                     <Row>
                         {
                             phoneCatagorys.map(sp=>
-                            <Col>
+                            <Col key={sp.id}>
                                <div className="card mt-3"
                                 style={{ width: '18rem', height: '20rem' }}>
                                 <img

@@ -23,7 +23,7 @@ const ListOfSeller = () => {
             <h1>Name: {name}</h1> */}
 
 
-            <table class="table">
+            <table className="table">
                 <thead>
                     <tr>
                         <th scope="col">#</th>

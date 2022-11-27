@@ -5,9 +5,9 @@ import Navbar from 'react-bootstrap/Navbar';
 import { Link } from 'react-router-dom';
 import { Context } from '../../firebase/FirebaseAuthProvider';
 const Menubar = () => {
-    const {user,logOut} = useContext(Context);
-    const handleLogOut = ()=>{
-        logOut().then(()=>{}).catch(err=>console.error(err))
+    const { user, logOut } = useContext(Context);
+    const handleLogOut = () => {
+        logOut().then(() => { }).catch(err => console.error(err))
     }
     return (
         <div>
@@ -19,19 +19,18 @@ const Menubar = () => {
                         <Nav className="me-auto">
                             <Link className='mx-2 text-decoration-none text-white' to='/'>Home</Link>
                             {user && <Link className='mx-2 text-decoration-none text-white' to='/dashboard'>Dashboard</Link>}
-                            
-                            <Link className='mx-2 text-decoration-none text-white' to='/tempCollection'>AddSomeData</Link>
+                            <Link className='mx-2 text-decoration-none text-white' to='/blogs'>Blogs</Link>
                             {
                                 user?.email ?
-                                <button className='btn btn-primary position-absolute top-0 end-0' onClick={handleLogOut}>LogOut</button>
-                                :
-                                <Link className='btn btn-primary mx-2 text-decoration-none text-white position-absolute top-0 end-0'  to='/login'>Login</Link>
+                                    <button className='btn btn-primary position-absolute top-0 end-0' onClick={handleLogOut}>LogOut</button>
+                                    :
+                                    <Link className='btn btn-primary mx-2 text-decoration-none text-white position-absolute top-0 end-0' to='/login'>Login</Link>
                             }
                         </Nav>
                     </Navbar.Collapse>
                 </Container>
             </Navbar>
-            
+
         </div>
     );
 };
