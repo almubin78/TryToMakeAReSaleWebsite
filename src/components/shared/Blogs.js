@@ -29,9 +29,9 @@ const Blogs = () => {
         <div>
             {
                 blogs.map((blog ,i)=>
-                    <div key={blog.id} className='border '>
+                    <div key={blog.id} className='border bg-dark p-1 rounded'>
                         <h2 className='text-primary'>{i+1}.{blog.question}</h2>
-                        <h4 className='text-warning'>{blog.answer}</h4>
+                        <h4 className='text-warning p-5'>{blog.answer}</h4>
                     </div>
 
                 )
