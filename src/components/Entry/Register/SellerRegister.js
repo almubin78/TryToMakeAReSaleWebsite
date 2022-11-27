@@ -13,13 +13,13 @@ const SellerRegister = () => {
     const [registerUserEmail, setRegisterUserEmail] = useState('');
     const [issueToken] = useToken(registerUserEmail);
     const goToPage = useNavigate();
-    if(issueToken){
+    if (issueToken) {
         goToPage('/')
     }
 
     const handleSignUp = data => {
-        const { email, password, name, location, phone,role } = data;
-
+        const { email, password, name, location, phone, role } = data;
+        console.log(data);
         userCreate(email, password)
             .then(res => {
                 const user = res.user;
@@ -64,7 +64,7 @@ const SellerRegister = () => {
     return (
         <div className='container'>
             <div className='w-100 border border-2 p-4 mt-4'>
-                <h2 className='text-center'>SignUp as a seller</h2>
+                <h2 className='text-center'>SignUp as a Seller/Buyer</h2>
                 <form onSubmit={handleSubmit(handleSignUp)}>
                     <div className="">
                         <label className="label"> <span className="text-primary">Name</span></label> <br />
@@ -82,7 +82,7 @@ const SellerRegister = () => {
                     </div>
                     <div className="">
                         <label className="label"> <span className="text-primary">Password</span></label>
-                        <input  type="password" {...register("password", {
+                        <input type="password" {...register("password", {
                             required: "Password is Required"
                         })} className="form-control" />
                         {errors.password && <p className='text-danger'>{errors.password.message}</p>}
@@ -90,21 +90,24 @@ const SellerRegister = () => {
                     <div className="">
                         <label className="label"> <span className="text-primary">Location</span></label>
                         <input type="text" {...register("location", {
-                            required: "Location is Required"
+                            required: "Please Provide your location. It will use when You Try To purchase/Sell a product"
                         })} className="form-control" />
                         {errors.location && <p className='text-danger'>{errors.location.message}</p>}
                     </div>
                     <div className="">
                         <label className="label"> <span className="text-primary">Phone</span></label>
-                        <input  type="text" {...register("phone", {
-                            required: "phone is Required"
+                        <input type="text" {...register("phone", {
+                            required: "Please Provide your Phone Number. It will use when You Try To purchase /Sell a product"
                         })} className="form-control" />
                         {errors.phone && <p className='text-danger'>{errors.phone.message}</p>}
                     </div>
-                    <div className="">
-                        <label className="label"> <span className="text-primary">Role <span className='text-danger'>(don't change it)</span></span></label>
-                        <input defaultValue='seller' type="text" {...register("role")} className="form-control" />
-                        {errors.role && <p className='text-danger'>{errors.role.message}</p>}
+                    
+                    <div>
+                    <label className="label"> <span className="text-primary">Register As </span><span className='text-danger font-bold'>(select )</span></label>
+                        <select {...register("role", { required: true })} className="form-select ">
+                            <option value="buyer">buyer</option>
+                            <option value="seller">seller</option>
+                        </select>
                     </div>
                     <button className='btn btn-primary mt-1' type='submit'>Register</button>
                     {registerError && <p className='text-danger'>{registerError}</p>}

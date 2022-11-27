@@ -27,9 +27,10 @@ const Blogs = () => {
     ]
     return (
         <div>
+            <h1 className='text-center mt-5'>This is blogs Section</h1>
             {
                 blogs.map((blog ,i)=>
-                    <div key={blog.id} className='border bg-dark p-1 rounded'>
+                    <div key={blog.id} className='border bg-body rounded shadow p-3 m-3'>
                         <h2 className='text-primary'>{i+1}.{blog.question}</h2>
                         <h4 className='text-warning p-5'>{blog.answer}</h4>
                     </div>
