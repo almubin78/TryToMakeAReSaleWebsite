@@ -4,13 +4,12 @@ import Dashboard from "../components/Dashboard/Dashboard";
 import LoginContainer from "../components/Entry/Login/LoginContainer";
 import RegisterContainer from "../components/Entry/Register/RegisterContainer";
 import TempData from "../components/TempData";
-import AllProducts from "../components/AllProducts/AllProducts";
 import PrivateRoute from "../components/PrivateSection/PrivateRoute";
 import Blogs from "../components/shared/Blogs";
 import Posts from "../components/Posts/Posts";
-import MyProducts from "../components/Posts/MyProducts";
 import PosterDashBoard from "../components/Dashboard/PosterDashBoard";
 import AdminDashboard from "../components/Dashboard/AdminDashboard";
+import ErrorPage from "../components/shared/ErrorPage";
 const { createBrowserRouter } = require("react-router-dom");
 
 
@@ -18,6 +17,7 @@ const router = createBrowserRouter([
     {
         path:'/',
         element:<Main></Main>,
+        errorElement:<ErrorPage></ErrorPage>,
         children:[
             {
                 path:'/',
@@ -51,6 +51,7 @@ const router = createBrowserRouter([
     {
         path:'/dashboard',
         element:<PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
+        errorElement:<ErrorPage></ErrorPage>,
         children:[
             {
                 path:'/dashboard/adminDashBoard',
@@ -62,9 +63,7 @@ const router = createBrowserRouter([
     {
         path:'/dashboard/sellerDashBoard',
         element:<PrivateRoute><PosterDashBoard></PosterDashBoard></PrivateRoute>,
-        children:[
-            
-        ]
+        
     }
 ])
 export default router;
