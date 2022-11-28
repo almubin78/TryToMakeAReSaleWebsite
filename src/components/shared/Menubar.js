@@ -13,7 +13,7 @@ const Menubar = () => {
         <div>
             <Navbar bg="dark" expand="lg">
                 <Container className=' position-relative'>
-                    <Navbar.Brand className='text-white' as={Link} to='/'>Old is Gold</Navbar.Brand>
+                    <Navbar.Brand className='text-white text-xl text-uppercase' as={Link} to='/'>Be Smart with Older</Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="me-auto">

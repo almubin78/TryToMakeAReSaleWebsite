@@ -1,13 +1,61 @@
-import React from 'react';
+// import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-const Posts = () => {
-    const { register, handleSubmit, formState: { errors } } = useForm();
+import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
+import { Context } from '../../firebase/FirebaseAuthProvider';
+// import { Context } from '../../firebase/FirebaseAuthProvider';
+import useDynamicTitle from '../shared/useDynamicTitle';
+// import { useQuery } from '@tanstack/react-query';
 
+const Posts = () => {
+    const goTo = useNavigate();
+    const { loading } = useContext(Context)
+    useDynamicTitle('Create Post')
+    const { register, handleSubmit, formState: { errors } } = useForm();
+    const imageHostKey = process.env.REACT_APP_img_key;
 
     const handleCreatePost = data => {
-        const { ItemName, img, OriginalPrice, SellPrice, phoneUsedTime, timeOfPost, conditionType, Category, description, purchesYear } = data;
-        console.log(data);
+        const { ItemName, img, OriginalPrice, SellPrice, phoneUsedTime, timeOfPost, conditionType, category, description, purchesYear } = data;
+        const image = img[0]
+        const formData = new FormData();
+        formData.append('image', image)
+        //'image' লিখিনি বলে ইরোর দিত
+        const url = `https://api.imgbb.com/1/upload?key=${imageHostKey}`
+        fetch((url), {
+            method: 'POST',
+            body: formData
+        })
+            .then(res => res.json())
+            .then(idata => {
+                console.log('image Data', idata);
+                if (idata.success) {
+                    const newPost = { ItemName, img, OriginalPrice, SellPrice, phoneUsedTime, timeOfPost, conditionType, category, description, purchesYear };
+                    fetch('http://localhost:5000/posts', {
+                        method: 'POST',
+                        headers: {
+                            'content-type': 'application/json'
+                        },
+                        body: JSON.stringify(newPost)
+                    })
+                        .then(res => res.json())
+                        .then(data => {
+                            toast.success('Congratulations!!! Your Post has been created successfully');
+                            goTo('/dashboard/sellerDashBoard')
+                        })
+                }
+
+            })
+
+
+
+
+
+        if (loading) {
+            return <h1>Loading....</h1>
+        }
     }
+
     return (
         <div className='container'>
             <div className='w-75  border border-2 p-5 mt-4 mx-auto'>
@@ -22,10 +70,10 @@ const Posts = () => {
                     </div>
                     <div>
                         <label className="label"> <span className="text-primary">Category </span><span className='text-warning font-bold'>(Select Carefully! after checking Your Post , It might be deleted if Not match with your post data )</span></label>
-                        <select {...register("Category", { required: true })} className="form-select ">
-                            <option value="oldPhone">Old Phone</option>
-                            <option value="smartPhone">Smart Phone</option>
-                            <option value="buttonPhone">Button Phone</option>
+                        <select {...register("category", { required: true })} className="form-select ">
+                            <option value="AntiquePhone">Antique Phone</option>
+                            <option value="SmartPhone">Smart Phone</option>
+                            <option value="ButtonPhone">Button Phone</option>
                         </select>
                     </div>
                     <div>
@@ -36,10 +84,10 @@ const Posts = () => {
                             <option value="fair">Fair</option>
                         </select>
                     </div>
-                    <div className="">
+                    <div className="form-control">
                         <label className="label"> <span className="text-primary">Image</span></label>
                         <input type="file" {...register("img", {
-                            required: "Email is Required"
+                            required: "Photo is Required"
                         })} className="form-control" />
                         {errors.img && <p className='text-danger'>{errors.img.message}</p>}
                     </div>
@@ -67,7 +115,7 @@ const Posts = () => {
                         })} className="form-control" />
                         {errors.phoneUsedTime && <p className='text-danger'>{errors.phoneUsedTime.message}</p>}
                     </div>
-                    {/* description, purchesYear */}
+                    
                     <div className=''>
                         <label className="label"> <span className="text-primary">Parches of Year </span><span className='text-warning font-bold'>(2020 to present)</span></label>
                         <select {...register("Category", { required: true })} className="form-select">
@@ -94,7 +142,7 @@ const Posts = () => {
                         })} className="form-control" />
                         {errors.description && <p className='text-danger'>{errors.description.message}</p>}
                     </div>
-                    
+
                     <div className="">
                         <label className="label"> <span className="text-primary">Contact Number</span></label>
                         <input type="text" {...register("phone", {
@@ -105,7 +153,6 @@ const Posts = () => {
 
 
                     <button className='btn btn-primary mt-1' type='submit'>Create Post</button>
-                    {/* {registerError && <p className='text-danger'>{registerError}</p>} */}
 
                 </form>
             </div>

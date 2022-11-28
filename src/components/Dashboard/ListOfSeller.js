@@ -31,7 +31,7 @@ const ListOfSeller = () => {
     }
     return (
         <div>
-
+            <h1>Here are all seller List</h1>
             <table className="table">
                 <thead>
                     <tr>
@@ -39,6 +39,7 @@ const ListOfSeller = () => {
                         <th scope="col">Name</th>
                         <th scope="col">Location</th>
                         <th scope="col">Contact</th>
+                        <th scope="col">Mail</th>
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
@@ -50,13 +51,14 @@ const ListOfSeller = () => {
                                 <td className='position-relative'>{sel.name}{sel.verifiedSeller === true &&
 
                                     <>
-                                    <span className="position-absolute top-50 start-50 translate-middle p-2 bg-success border border-light rounded-circle">
+                                    <span className="position-absolute top-0 start-100 translate-middle p-2 bg-success border border-light rounded-circle">
                                         <span className="visually-hidden">New alerts</span>
                                     </span>
                                     </>}
                                 </td>
                                 <td>{sel.location}</td>
                                 <td>{sel.phone}</td>
+                                <td>{sel.email}</td>
                                 <th>
                                     {
                                         sel.verifiedSeller === true ?

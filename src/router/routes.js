@@ -8,6 +8,9 @@ import AllProducts from "../components/AllProducts/AllProducts";
 import PrivateRoute from "../components/PrivateSection/PrivateRoute";
 import Blogs from "../components/shared/Blogs";
 import Posts from "../components/Posts/Posts";
+import MyProducts from "../components/Posts/MyProducts";
+import PosterDashBoard from "../components/Dashboard/PosterDashBoard";
+import AdminDashboard from "../components/Dashboard/AdminDashboard";
 const { createBrowserRouter } = require("react-router-dom");
 
 
@@ -35,21 +38,33 @@ const router = createBrowserRouter([
             {
                 path:'/blogs',
                 element:<Blogs></Blogs>
-            },
-            {
-                path:'/category',
-                element:<AllProducts></AllProducts>
             }
+            
             ,
             {
                 path:'/addAPost',
                 element:<Posts></Posts>
-            }
+            },
+            
         ]
     },
     {
         path:'/dashboard',
-        element:<PrivateRoute><Dashboard></Dashboard></PrivateRoute>
+        element:<PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
+        children:[
+            {
+                path:'/dashboard/adminDashBoard',
+                element:<AdminDashboard></AdminDashboard>
+                
+            }
+        ]
+    },
+    {
+        path:'/dashboard/sellerDashBoard',
+        element:<PrivateRoute><PosterDashBoard></PosterDashBoard></PrivateRoute>,
+        children:[
+            
+        ]
     }
 ])
 export default router;

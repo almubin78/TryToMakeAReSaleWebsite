@@ -7,13 +7,14 @@ import { Link, useNavigate } from 'react-router-dom';
 const ProductsCategories = () => {
     const navigate = useNavigate()
     const phoneCategories = [
-        { id: 1, name: "Old Phone", img: old,category:'OldPhone' },
+        { id: 1, name: "Old Phone", img: old,category:'AntiquePhone' },
         { id: 2, name: "Smart Phone", img: smart,category:'SmartPhone' },
         { id: 3, name: "Button Phone", img: button,category:'ButtonPhone' },
 
     ]
-    const handleCategory = () => {
-        navigate('/category')
+    const handleCategory = (category) => {
+        navigate(`/category/${category}`);
+        console.log();
     }
     return (
         <div className='container w-75 mx-auto mb-5'>
@@ -24,7 +25,7 @@ const ProductsCategories = () => {
                     <Row>
                         {
                             phoneCategories.map(sp =>
-                                <Col key={sp.id}>
+                                <Col key={sp.category}>
                                     <div className="card mt-3"
                                         style={{ width: '18rem', height: '20rem' }}>
                                         <img
@@ -37,7 +38,7 @@ const ProductsCategories = () => {
                                         </div>
 
                                         <div class="d-grid gap-2">
-                                            <button onClick={handleCategory} class="btn btn-primary" type="button">View All</button>
+                                            <button onClick={()=>handleCategory(sp.category)} class="btn btn-primary" type="button">View All</button>
                                         </div>
                                     </div>
                                 </Col>)
