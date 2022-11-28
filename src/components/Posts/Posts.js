@@ -1,5 +1,5 @@
 // import { useContext } from 'react';
-import { useContext, useEffect, useState } from 'react';
+import { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
@@ -10,7 +10,7 @@ import useDynamicTitle from '../shared/useDynamicTitle';
 
 const Posts = () => {
     const goTo = useNavigate();
-    const { loading } = useContext(Context)
+    const { loading, user } = useContext(Context)
     useDynamicTitle('Create Post')
     const { register, handleSubmit, formState: { errors } } = useForm();
     const imageHostKey = process.env.REACT_APP_img_key;
@@ -30,8 +30,8 @@ const Posts = () => {
             .then(idata => {
                 console.log('image Data', idata);
                 if (idata.success) {
-                    const newPost = { ItemName, img, OriginalPrice, SellPrice, phoneUsedTime, timeOfPost, conditionType, category, description, purchesYear };
-                    fetch('http://localhost:5000/posts', {
+                    const newPost = { ItemName, img: idata.data.url, OriginalPrice, SellPrice, phoneUsedTime, timeOfPost, conditionType, category, description, purchesYear, sellerName: user.displayName };
+                    fetch('https://assigment-12-server.vercel.app/posts', {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json'
@@ -59,7 +59,7 @@ const Posts = () => {
     return (
         <div className='container'>
             <div className='w-75  border border-2 p-5 mt-4 mx-auto'>
-                <h2 className='text-center'>SignUp as a Seller/Buyer</h2>
+                <h2 className='text-center'>Create Post About Your Product</h2>
                 <form onSubmit={handleSubmit(handleCreatePost)}>
                     <div className="">
                         <label className="label"> <span className="text-primary">Item Name</span></label> <br />
@@ -115,7 +115,7 @@ const Posts = () => {
                         })} className="form-control" />
                         {errors.phoneUsedTime && <p className='text-danger'>{errors.phoneUsedTime.message}</p>}
                     </div>
-                    
+
                     <div className=''>
                         <label className="label"> <span className="text-primary">Parches of Year </span><span className='text-warning font-bold'>(2020 to present)</span></label>
                         <select {...register("Category", { required: true })} className="form-select">
@@ -156,6 +156,7 @@ const Posts = () => {
 
                 </form>
             </div>
+            
         </div>
     );
 

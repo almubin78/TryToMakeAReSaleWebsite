@@ -1,14 +1,16 @@
 
-## [INSTRUCTION](https://github.com/ProgrammingHero1/Used-products-resale-market-Assignment/blob/main/task_description.md)
-[LOGIN Reg](https://www.youtube.com/watch?v=L5WWrGMsnpw)
 ## ====== main ====
 ## [Client Side Repository](https://github.com/programming-hero-web-course-4/b612-used-products-resale-clients-side-almubin78)
-## [Server Side Repository](https://github.com/programming-hero-web-course-4/b612-used-products-resale-server-side-almubin78)
+## [Server Side Repository](https://assigment-12-server.vercel.app/)
 ## [Live website link]()
 adminEmail: almubin78@gmail.com
 
 adminPassword: almubin78@HeroPass
 https://github.com/programming-hero-web-course-4/b612-used-products-resale-clients-side-almubin78
 
-# ========= IMPORTANT ========
-* A user does not see data when they visit a route, does not see the ad after posting the advertisement without reloading the site, or gets logged out when visiting a private route right after signing up. In that case, etc., then you may lose a significant mark for that.
+# I have done
+* create react app for Old Mobile Phone sell
+* use useQuery
+* use Modal
+* use React Form
+* connect Mongo to Client site
