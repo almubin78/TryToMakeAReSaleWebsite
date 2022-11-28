@@ -13,7 +13,7 @@ const ButtonPhone = () => {
     console.log(displayName);
     const [products, setProducts] = useState([]);
     useEffect(() => {
-        fetch('https://assigment-12-server.vercel.app/category/ButtonPhone')
+        fetch('http://localhost:5000/category/ButtonPhone')
             .then(res => res.json())
             .then(data => {
                 setProducts(data);

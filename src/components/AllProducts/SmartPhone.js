@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Button, Col, Container, Modal, Row } from 'react-bootstrap';
+import { Context } from '../../firebase/FirebaseAuthProvider';
 const SmartPhone = () => {
+    const {user} = useContext(Context)
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     const [products, setProducts] = useState([]);
     useEffect(() => {
-        fetch('https://assigment-12-server.vercel.app/category/SmartPhone')
+        fetch('http://localhost:5000/category/SmartPhone')
             .then(res => res.json())
             .then(data => {
                 setProducts(data);
@@ -44,13 +46,13 @@ const SmartPhone = () => {
                 <Modal.Header closeButton>
                     <Modal.Title>Modal heading</Modal.Title>
                 </Modal.Header>
-                <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+                <input disabled type="text" className="form-control" defaultValue={user.displayName}/>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
                         Close
                     </Button>
-                    <Button variant="primary" onClick={handleClose}>
-                        Save Changes
+                    <Button variant="primary" type='submit'>
+                        Submit
                     </Button>
                 </Modal.Footer>
             </Modal>

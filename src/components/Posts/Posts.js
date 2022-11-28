@@ -31,7 +31,7 @@ const Posts = () => {
                 console.log('image Data', idata);
                 if (idata.success) {
                     const newPost = { ItemName, img: idata.data.url, OriginalPrice, SellPrice, phoneUsedTime, timeOfPost, conditionType, category, description, purchesYear, sellerName: user.displayName };
-                    fetch('https://assigment-12-server.vercel.app/posts', {
+                    fetch('http://localhost:5000/posts', {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json'

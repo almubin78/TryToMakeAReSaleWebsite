@@ -8,7 +8,7 @@ const AntiquePhone = () => {
 
     const [products, setProducts] = useState([]);
     useEffect(() => {
-        fetch('https://assigment-12-server.vercel.app/category/AntiquePhone')
+        fetch('http://localhost:5000/category/AntiquePhone')
             .then(res => res.json())
             .then(data => {
                 setProducts(data);
