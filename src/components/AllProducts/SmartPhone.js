@@ -8,7 +8,7 @@ const SmartPhone = () => {
     const handleShow = () => setShow(true);
     const [products, setProducts] = useState([]);
     useEffect(() => {
-        fetch('https://assigment-12-server-almubin78.vercel.app/category/SmartPhone')
+        fetch('http://localhost:5000/category/SmartPhone')
             .then(res => res.json())
             .then(data => {
                 setProducts(data);

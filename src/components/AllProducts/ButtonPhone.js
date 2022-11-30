@@ -1,26 +1,22 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Button, Col, Container, Modal, Row } from 'react-bootstrap';
-import { Form } from 'react-router-dom';
+import { Col, Container,Row } from 'react-bootstrap';
 import { Context } from '../../firebase/FirebaseAuthProvider';
 const ButtonPhone = () => {
-    const [show, setShow] = useState(false);
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
-
+    
 
     const { user } = useContext(Context);
     const { displayName } = user;
     console.log(displayName);
     const [products, setProducts] = useState([]);
     useEffect(() => {
-        fetch('https://assigment-12-server-almubin78.vercel.app/category/ButtonPhone')
+        fetch('http://localhost:5000/category/ButtonPhone')
             .then(res => res.json())
             .then(data => {
                 setProducts(data);
             })
     }, []);
-    const handleCreatePost = data => {
-        console.log(data);
+    const handleBookNow = (id) =>{
+        
     }
     return (
         <div>
@@ -42,7 +38,7 @@ const ButtonPhone = () => {
                                         
                                         <p className="card-title"><span className='fw-bold text-primary'>Product Condition:</span> {product.conditionType}</p>
                                         <p className="card-text"><span className='fw-bold text-primary'>Description:</span> {product.description}</p>
-                                        <button onClick={handleShow} className="btn btn-primary">Book Now</button>
+                                        <button onClick={()=>handleBookNow(product._id)} className="btn btn-primary">Book Now</button>
                                     </div>
                                 </div>
                             </Col>

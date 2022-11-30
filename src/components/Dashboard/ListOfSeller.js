@@ -6,7 +6,7 @@ const ListOfSeller = () => {
     const { data: users = [], refetch } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
-            const res = await fetch('https://assigment-12-server-almubin78.vercel.app/sellers');
+            const res = await fetch('http://localhost:5000/sellers');
             const data = await res.json();
             // console.log(data);
             return data
@@ -15,7 +15,7 @@ const ListOfSeller = () => {
 
     const handleVerifySeller = id => {
         console.log('handleVerifySeller id', id);
-        fetch(`https://assigment-12-server-almubin78.vercel.app/allUsers/verified/${id}`, {
+        fetch(`http://localhost:5000/allUsers/verified/${id}`, {
             method: 'PUT',
             headers: {
                 authorization: `bearer ${localStorage.getItem('myToken')}`
@@ -31,7 +31,7 @@ const ListOfSeller = () => {
     }
     const handleDeleteUser = id => {
         console.log(id);
-        fetch(`https://assigment-12-server-almubin78.vercel.app/deleteSeller/${id}`, {
+        fetch(`http://localhost:5000/deleteSeller/${id}`, {
             method: 'delete',
             headers: {
                 authorization: `bearer ${localStorage.getItem('myToken')}`

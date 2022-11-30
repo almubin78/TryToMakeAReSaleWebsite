@@ -35,7 +35,7 @@ const Advetise = () => {
                             advertiseProducts.map(p =>
 
                                 <Card className='mx-2 mb-2' key={p._id} style={{ width: '18rem' }}>
-                                    <Card.Img variant="top" style={{width:'18rem',height:'18rem'}} src={p.img} alt='Pic Not Available' />
+                                    <Card.Img variant="top" style={{ width: '18rem', height: '18rem' }} src={p.img} alt='Pic Not Available' />
                                     <Card.Body>
                                         <Card.Title>{p.ItemName}</Card.Title>
                                         <Card.Title>

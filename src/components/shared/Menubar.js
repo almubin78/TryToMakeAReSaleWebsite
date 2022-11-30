@@ -60,7 +60,7 @@ const Menubar = () => {
                                 {
                                     isBuyer &&
                                     <Link className='mx-2 text-decoration-none text-white' to='/dashboard/myorder'>My Orders</Link>  
-                                }                                                      
+                                }                                                     
 
                             <Link className='mx-2 text-decoration-none text-white' to='/blogs'>Blogs</Link>
 

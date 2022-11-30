@@ -19,6 +19,31 @@ function verifyJWT(req, res, next) {
     })
 
 }
+///// আমার কারিকুরি
+function verifyToken(req, res, next) {
+    const authHeader = req.headers.authorization;
+
+    console.log('authHeader',authHeader);
+
+    if (!authHeader) {
+        return res.status(401).send('unauthorized access')
+
+    }
+    const token = authHeader.split(' ')[1];
+
+    console.log('token by useing ##verifyToken::::::::', token);
+    console.log('####process.env.ACCESS_TOKEN:::::::::::::,',process.env.ACCESS_TOKEN)
+
+    jwt.verify(token, process.env.ACCESS_TOKEN, function (ভুল,  মেইল সহ iat,exp) {
+        console.log('###verifyToken Function ###err[ভুল],decoded[ মেইল সহ iat,exp]::::::::::::',ভুল,'DECODED', মেইল সহ iat,exp);
+        if (ভুল) { 
+            return res.status(403).send({ message: 'From verifyToken:forbidden access' }) 
+        }
+        req.decoded =  মেইল সহ iat,exp;
+        console.log('Final DECODED##',req.decoded);
+        next()
+    })
+}
 ```
 # VerifyAdmin
 ```

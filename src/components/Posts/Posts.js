@@ -10,7 +10,7 @@ import useDynamicTitle from '../shared/useDynamicTitle';
 // import { useQuery } from '@tanstack/react-query';
 
 const Posts = () => {
-    
+
     const goTo = useNavigate();
     const { loading, user } = useContext(Context)
     useDynamicTitle('Create Post')
@@ -33,19 +33,22 @@ const Posts = () => {
                 console.log('image Data', idata);
                 if (idata.success) {
                     const newPost = { ItemName, img: idata.data.url, OriginalPrice, SellPrice, phoneUsedTime, timeOfPost, conditionType, category, description, purchesYear, sellerName: user.displayName };
-                    fetch('https://assigment-12-server-almubin78.vercel.app/posts', {
+                    fetch('http://localhost:5000/posts', {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json',
-                            authorization: `bearer ${localStorage.getItem('accessToken')}`
+                            authorization: `bearer ${localStorage.getItem('myToken')}`
                         },
                         body: JSON.stringify(newPost)
                     })
                         .then(res => res.json())
                         .then(data => {
-                            console.log('#Post.js ##',data);
-                            toast.success('Congratulations!!! Your Post has been created successfully');
-                            goTo('/dashboard/sellerDashBoard')
+                            // console.log('#Post.js ##',data)
+                            if (data.acknowledged) {
+                                toast.success('Congratulations!!! Your Post has been created successfully');
+                                goTo('/dashboard/sellerDashBoard')
+                            };
+
                         })
                 }
 
@@ -101,7 +104,7 @@ const Posts = () => {
                         })} className="form-control" />
                         {errors.img && <p className='text-danger'>{errors.img.message}</p>}
                     </div>
-                    
+
                     <div className='d-flex mt-2'>
                         <div className="">
                             <label className="label"> <span className="text-primary">OriginalPrice: </span></label>
@@ -119,7 +122,7 @@ const Posts = () => {
                         </div>
 
                     </div>
-                    
+
                     <div className=''>
                         <label className="label"> <span className="text-primary">Parches of Year </span><span className='text-warning font-bold'>(2020 to present)</span></label>
                         <select {...register("purchesYear", { required: true })} className="form-select">
@@ -128,8 +131,8 @@ const Posts = () => {
                             <option value="2019">2019</option>
                             <option value="2020">2020</option>
                             <option value="2021">2021</option>
-                            <option value="2">2</option>
-                            
+                            <option value="2">2022</option>
+
                         </select>
                     </div>
                     <div className=''>
@@ -141,8 +144,8 @@ const Posts = () => {
                             <option value="Commilla">Commilla</option>
                             <option value="Sylet">Sylet</option>
                             <option value="Jassor">Jassor</option>
-                            
-                            
+
+
                         </select>
                     </div>
                     <div className=''>
@@ -152,7 +155,7 @@ const Posts = () => {
                             <option value="More Than 6 month to 1 year">More Than 6 month to 1 year</option>
                             <option value="More Than 1 Year to 2 Year ">More Than 1 Year to 2 Year </option>
                             <option value="More Than 2 Year ">More Than 2 Year </option>
-                            
+
                         </select>
                     </div>
                     <div className="">
@@ -165,7 +168,7 @@ const Posts = () => {
 
                     <div className="">
                         <label className="label"> <span className="text-primary">Contact Number</span></label>
-                        <input defaultValue={+880170100222255}  type="number" {...register("phone", {
+                        <input defaultValue={+880170100222255} type="number" {...register("phone", {
                             required: "Please Provide your Phone Number. It will be used when You Try To purchase /Sell a product"
                         })} className="form-control" />
                         {errors.phone && <p className='text-danger'>{errors.phone.message}</p>}

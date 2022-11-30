@@ -8,7 +8,7 @@ const useToken = (email) => {
     useEffect(()=>{
         if(email){
             console.log("useEffect=>if(email) #useToken Hooks::::::::",email);
-            const url = `https://assigment-12-server-almubin78.vercel.app/json?email=${email}`;
+            const url = `http://localhost:5000/json?email=${email}`;
             console.log('url from useToken [fetch.then[jr],then[data.accessToken]]::',url);
             fetch(url)
             .then(res=>res.json())
