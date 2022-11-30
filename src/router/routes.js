@@ -12,10 +12,12 @@ import ErrorPage from "../components/shared/ErrorPage";
 import AntiquePhone from "../components/AllProducts/AntiquePhone";
 import SmartPhone from "../components/AllProducts/SmartPhone";
 import ButtonPhone from "../components/AllProducts/ButtonPhone";
+import BuyerOrder from "../components/Dashboard/BuyerOrder";
 const { createBrowserRouter } = require("react-router-dom");
 
 
 const router = createBrowserRouter([
+    
     {
         path:'/',
         element:<Main></Main>,
@@ -25,6 +27,7 @@ const router = createBrowserRouter([
                 path:'/',
                 element:<Home></Home>
             },
+            
             {
                 path:'/login',
                 element:<LoginContainer></LoginContainer>
@@ -38,10 +41,6 @@ const router = createBrowserRouter([
                 element:<Blogs></Blogs>
             },
             {
-                path:'/addAPost',
-                element:<Posts></Posts>
-            },
-            {
                 path:'/category/AntiquePhone',
                 element:<AntiquePhone></AntiquePhone>
             },
@@ -53,6 +52,10 @@ const router = createBrowserRouter([
                 path:'/category/ButtonPhone',
                 element:<ButtonPhone></ButtonPhone>
             },
+            {
+                path:'/addAPost',
+                element:<Posts></Posts>
+            }
             
         ]
     },
@@ -72,6 +75,11 @@ const router = createBrowserRouter([
         path:'/dashboard/sellerDashBoard',
         element:<PrivateRoute><PosterDashBoard></PosterDashBoard></PrivateRoute>,
         
-    }
+    },
+    {
+        path:'/dashboard/myorder',
+        element:<PrivateRoute><BuyerOrder></BuyerOrder></PrivateRoute>
+    },
+    
 ])
 export default router;

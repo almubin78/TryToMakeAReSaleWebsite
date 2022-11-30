@@ -1,18 +1,30 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
+import toast from 'react-hot-toast';
 
 const ListOfBuyers = () => {
     const { data: buyers = [], refetch } = useQuery({
         queryKey: ['buyers'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/buyer');
+            const res = await fetch('https://assigment-12-server-almubin78.vercel.app/buyer');
             const data = await res.json();
-            console.log(data);
+            console.log('ListOfBuyers.js ### queryFn ## data:::::::::', data);
             return data
         }
     })
-    const handleDeleteBuyer = id =>{
-
+    const handleDeleteUser = id => {
+        console.log(id);
+        fetch(`https://assigment-12-server-almubin78.vercel.app/deleteSeller/${id}`, {
+            method: 'delete',
+            headers: {
+                authorization: `bearer ${localStorage.getItem('myToken')}`
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+                toast.success(' seller verified successful.');
+                refetch();
+            })
     }
     return (
         <div>
@@ -39,10 +51,10 @@ const ListOfBuyers = () => {
                                 <td>{sel.phone}</td>
                                 <td>{sel.email}</td>
                                 <th>
-                                {sel?.role !== 'admin' && <button className='btn btn-info' onClick={() => handleDeleteBuyer(sel._id)}>Delete</button>}
+                                    {sel?.role !== 'admin' && <button className='btn btn-info' onClick={() => handleDeleteUser(sel._id)}>Delete</button>}
 
                                 </th>
-                                
+
                             </tr>
                         )
                     }
@@ -53,7 +65,7 @@ const ListOfBuyers = () => {
 
         </div>
     );
-    
+
 };
 
 export default ListOfBuyers;

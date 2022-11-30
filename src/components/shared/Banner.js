@@ -10,43 +10,42 @@ const Banner = () => {
             <Carousel.Item>
                 <img
                     className="d-block w-75 mx-auto"
-                    style={{height:'600px'}}
-                    src={img1}
-                    alt="First slide"
+                    style={{ height: '600px' }}
+                    src={img4}
+                    alt="Third slide"
                 />
+
                 <Carousel.Caption>
-                    <h3>First slide label</h3>
-                    <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                    <h3 className='text-primary fs-1 fw-bold'>Oldest Phone Collection</h3>
+                    <p className='text-success fs-2 fw-bold'>decided to keep old cell phone models that he came across in his line of work and start his own collection.</p>
                 </Carousel.Caption>
             </Carousel.Item>
             <Carousel.Item>
                 <img
                     className="d-block w-75 mx-auto"
-                    style={{height:'600px'}}
+                    style={{ height: '600px' }}
+                    src={img1}
+                    alt="First slide"
+                />
+                <Carousel.Caption>
+                    <h3 className='text-primary fs-1 fw-bold'>Oldest Phone Collection</h3>
+                    <p className='text-success fs-2 fw-bold'>decided to keep old cell phone models that he came across in his line of work and start his own collection.</p>
+                </Carousel.Caption>
+            </Carousel.Item>
+            <Carousel.Item>
+                <img
+                    className="d-block w-75 mx-auto"
+                    style={{ height: '600px' }}
                     src={img2}
                     alt="Second slide"
                 />
 
                 <Carousel.Caption>
-                    <h3>Second slide label</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    <h3 className='text-primary fs-1 fw-bold'>Oldest Phone Collection</h3>
+                    <p className='text-success fs-2 fw-bold'>decided to keep old cell phone models that he came across in his line of work and start his own collection.</p>
                 </Carousel.Caption>
             </Carousel.Item>
-            <Carousel.Item>
-                <img
-                    className="d-block w-75 mx-auto"
-                    style={{height:'600px'}}
-                    src={img3}
-                    alt="Third slide"
-                />
-
-                <Carousel.Caption>
-                    <h3>Third slide label</h3>
-                    <p>
-                        Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-                    </p>
-                </Carousel.Caption>
-            </Carousel.Item>
+            
         </Carousel>
     );
 };

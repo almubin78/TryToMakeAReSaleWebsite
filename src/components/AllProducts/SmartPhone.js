@@ -8,7 +8,7 @@ const SmartPhone = () => {
     const handleShow = () => setShow(true);
     const [products, setProducts] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:5000/category/SmartPhone')
+        fetch('https://assigment-12-server-almubin78.vercel.app/category/SmartPhone')
             .then(res => res.json())
             .then(data => {
                 setProducts(data);
@@ -31,7 +31,6 @@ const SmartPhone = () => {
                                         <p className="card-title"><span className='fw-bold text-primary'> Offer Price:</span> {product.SellPrice} taka</p>
                                         <p className="card-title"><span className='fw-bold text-primary'>Product Condition:</span> {product.conditionType}</p>
                                         <p className="card-title"><span className='fw-bold text-primary'>Used Time: </span>{product.phoneUsedTime}</p>
-                                        <p className="card-title"><span className='fw-bold text-primary'>Seller Name:</span> {product.sellerName}</p>
                                         <p className="card-title"><span className='fw-bold text-primary'>Product Condition:</span> {product.conditionType}</p>
                                         <p className="card-text"><span className='fw-bold text-primary'>Description:</span> {product.description}</p>
                                         <button onClick={handleShow} className="btn btn-primary">Book Now</button>
@@ -42,20 +41,7 @@ const SmartPhone = () => {
                     }
                 </Row>
             </Container>
-            <Modal show={show} onHide={handleClose}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Modal heading</Modal.Title>
-                </Modal.Header>
-                <input disabled type="text" className="form-control" defaultValue={user.displayName}/>
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>
-                        Close
-                    </Button>
-                    <Button variant="primary" type='submit'>
-                        Submit
-                    </Button>
-                </Modal.Footer>
-            </Modal>
+            
         </div>
     );
 };

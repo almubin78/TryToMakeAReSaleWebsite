@@ -9,7 +9,7 @@ const Advetise = () => {
     const haveProduct = true;
     useEffect(() => {
         //এটি ছাড়া শুধু ফেচ করলেও ঠিক রেজাল্ট আসে। 
-        fetch('http://localhost:5000/tempCollection')
+        fetch('http://localhost:5000/signleposts')
             .then(res => res.json())
             .then(data => {
                 // console.log(data);
@@ -35,20 +35,20 @@ const Advetise = () => {
                             advertiseProducts.map(p =>
 
                                 <Card className='mx-2 mb-2' key={p._id} style={{ width: '18rem' }}>
-                                    <Card.Img variant="top" src="holder.js/100px180" alt='Pic Not Available' />
+                                    <Card.Img variant="top" style={{width:'18rem',height:'18rem'}} src={p.img} alt='Pic Not Available' />
                                     <Card.Body>
-                                        <Card.Title>{p.productName}</Card.Title>
+                                        <Card.Title>{p.ItemName}</Card.Title>
                                         <Card.Title>
-                                            Bought Price: {p.BuyPrice}
+                                            Bought Price: {p.OriginalPrice}
                                         </Card.Title>
                                         <Card.Text>
                                             Sell Price: {p.SellPrice}
                                         </Card.Text>
                                         <Card.Text>
-                                            Location: {p.Address}
+                                            Category: {p.category}
                                         </Card.Text>
                                         <Card.Text>
-                                            Contact: {p.Phone}
+                                            seller: {p.sellerName}
                                         </Card.Text>
                                         <Button variant="primary">Book Now</Button>
                                     </Card.Body>

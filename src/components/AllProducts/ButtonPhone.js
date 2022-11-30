@@ -13,7 +13,7 @@ const ButtonPhone = () => {
     console.log(displayName);
     const [products, setProducts] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:5000/category/ButtonPhone')
+        fetch('https://assigment-12-server-almubin78.vercel.app/category/ButtonPhone')
             .then(res => res.json())
             .then(data => {
                 setProducts(data);
@@ -39,7 +39,7 @@ const ButtonPhone = () => {
                                         <p className="card-title"><span className='fw-bold text-primary'> Offer Price:</span> {product.SellPrice} taka</p>
                                         <p className="card-title"><span className='fw-bold text-primary'>Product Condition:</span> {product.conditionType}</p>
                                         <p className="card-title"><span className='fw-bold text-primary'>Used Time: </span>{product.phoneUsedTime}</p>
-                                        <p className="card-title"><span className='fw-bold text-primary'>Seller Name:</span> {product.sellerName}</p>
+                                        
                                         <p className="card-title"><span className='fw-bold text-primary'>Product Condition:</span> {product.conditionType}</p>
                                         <p className="card-text"><span className='fw-bold text-primary'>Description:</span> {product.description}</p>
                                         <button onClick={handleShow} className="btn btn-primary">Book Now</button>

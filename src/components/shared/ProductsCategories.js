@@ -37,8 +37,8 @@ const ProductsCategories = () => {
                                             <h2 className="card-title">{sp.name}</h2>
                                         </div>
 
-                                        <div class="d-grid gap-2">
-                                            <button onClick={()=>handleCategory(sp.category)} class="btn btn-primary" type="button">View All</button>
+                                        <div className="d-grid gap-2">
+                                            <button onClick={()=>handleCategory(sp.category)} className="btn btn-primary" type="button">View All</button>
                                         </div>
                                     </div>
                                 </Col>)

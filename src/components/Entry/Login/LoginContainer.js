@@ -6,13 +6,24 @@ import useToken from '../../../hooks/useToken';
 import useDynamicTitle from '../../shared/useDynamicTitle';
 
 const LoginContainer = () => {
-    const { logIn, googleLogin } = useContext(Context);
+    const { logIn, googleLogin} = useContext(Context);
     useDynamicTitle('Login');
-    const [loginError, setLoginError, loading] = useState('')
+    const [loginError, setLoginError ] = useState('')
     const [loginUserEmail, setLoginUserEmail] = useState('')
     const [issueToken] = useToken(loginUserEmail)
     const goto = useNavigate()
     const { register, handleSubmit, formState: { errors } } = useForm();
+
+    const handleGoogleLogin = ()=>{
+        googleLogin()
+        .then(res=>{
+            const user = res.user;
+            goto('/')
+        })
+        .catch(err=>{
+            console.error(err);
+        })
+    }
     const handleLogin = data => {
         const { email } = data;
         setLoginUserEmail(email)
@@ -54,7 +65,7 @@ const LoginContainer = () => {
 
                     <p className='text-center'>Already Account? <Link to='/register'>Register</Link></p>
                 </form>
-                <button className='mx-auto' style={{width:'200px'}}>Login With Google</button>
+                <button onClick={handleGoogleLogin} className='mx-auto d-flex justify-content-center' style={{width:'200px'}}>Login With Google</button>
             </div>
         </div>
 

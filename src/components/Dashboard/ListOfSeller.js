@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 
@@ -6,16 +6,16 @@ const ListOfSeller = () => {
     const { data: users = [], refetch } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/sellers');
+            const res = await fetch('https://assigment-12-server-almubin78.vercel.app/sellers');
             const data = await res.json();
-            console.log(data);
+            // console.log(data);
             return data
         }
     })
 
     const handleVerifySeller = id => {
-        console.log(id);
-        fetch(`http://localhost:5000/allUsers/verified/${id}`, {
+        console.log('handleVerifySeller id', id);
+        fetch(`https://assigment-12-server-almubin78.vercel.app/allUsers/verified/${id}`, {
             method: 'PUT',
             headers: {
                 authorization: `bearer ${localStorage.getItem('myToken')}`
@@ -27,6 +27,21 @@ const ListOfSeller = () => {
                     toast.success(' seller verified successful.');
                     refetch();
                 }
+            })
+    }
+    const handleDeleteUser = id => {
+        console.log(id);
+        fetch(`https://assigment-12-server-almubin78.vercel.app/deleteSeller/${id}`, {
+            method: 'delete',
+            headers: {
+                authorization: `bearer ${localStorage.getItem('myToken')}`
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log('### ListOfSeller.js #handleDeleteUser f.t.t(data)', data);
+                toast.success(`You Have deleted ${data.name} successfully` );
+                refetch();
             })
     }
     return (
@@ -49,12 +64,12 @@ const ListOfSeller = () => {
                             <tr key={sel._id}>
                                 <th scope="row">{i + 1}</th>
                                 <td className='position-relative'>{sel.name}{sel.verifiedSeller === true &&
-
                                     <>
-                                    <span className="position-absolute top-0 start-100 translate-middle p-2 bg-success border border-light rounded-circle">
-                                        <span className="visually-hidden">New alerts</span>
-                                    </span>
-                                    </>}
+                                        <span className="position-absolute top-0 start-100 translate-middle p-2 bg-success border border-light rounded-circle">
+                                            <span className="visually-hidden">New alerts</span>
+                                        </span>
+                                    </>
+                                }
                                 </td>
                                 <td>{sel.location}</td>
                                 <td>{sel.phone}</td>
@@ -72,7 +87,7 @@ const ListOfSeller = () => {
 
                                 </th>
                                 <th>
-                                    <button className='btn btn-danger'>Delete Seller</button>
+                                    <button className='btn btn-danger' onClick={() => handleDeleteUser(sel._id)}>Delete Seller</button>
                                 </th>
                             </tr>
                         )
