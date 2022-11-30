@@ -44,6 +44,7 @@ const MyProducts = () => {
                 toast.success(`Your Post is approved successfully`);
                 refetch();
             }
+            toast.error('You are not verified by Our admin')
         })
     }
     return (
@@ -85,11 +86,11 @@ const MyProducts = () => {
                             </tr>
                         )
                     }
-
+                    
                 </tbody>
             </table>
 
-
+                
         </div>
     );
 };

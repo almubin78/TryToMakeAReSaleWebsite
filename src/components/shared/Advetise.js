@@ -4,12 +4,13 @@ import { Container, Row } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { Link } from 'react-router-dom';
+import Modal from '../Modal/Modal';
 
 const Advetise = () => {
     const [advertiseProducts, setAdvertiseProducts] = useState([]);
     const haveProduct = true;
 
-    const { data: sellers = [], refetch } = useQuery({
+    const { data: sellers = [] } = useQuery({
         queryKey: ['sellers'],
         queryFn: async () => {
             const res = await fetch('http://localhost:5000/sellers');
@@ -80,6 +81,13 @@ const Advetise = () => {
                     }
                 </Row>
             </Container>
+            {
+                advertiseProducts.map(product=><Modal
+                    key={product._id}
+                    ItemName = {product.ItemName}
+                >
+                </Modal>)
+            }
         </div>
     );
 };
