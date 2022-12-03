@@ -18,7 +18,7 @@ const Posts = () => {
     const imageHostKey = process.env.REACT_APP_img_key;
 
     const handleCreatePost = data => {
-        const { ItemName, img, OriginalPrice, SellPrice, phoneUsedTime, timeOfPost, conditionType, category, description, purchesYear } = data;
+        const { ItemName, img, OriginalPrice, SellPrice, phoneUsedTime, timeOfPost, conditionType, category, description, purchesYear,phone,location } = data;
         const image = img[0]
         const formData = new FormData();
         formData.append('image', image)
@@ -32,7 +32,7 @@ const Posts = () => {
             .then(idata => {
                 console.log('image Data', idata);
                 if (idata.success) {
-                    const newPost = { ItemName, img: idata.data.url, OriginalPrice, SellPrice, phoneUsedTime, timeOfPost, conditionType, category, description, purchesYear, sellerName: user.displayName };
+                    const newPost = { ItemName, img: idata.data.url, OriginalPrice, SellPrice, phoneUsedTime, timeOfPost, conditionType, category, description, purchesYear, sellerName: user.displayName,phone,location };
                     fetch('http://localhost:5000/posts', {
                         method: 'POST',
                         headers: {
@@ -71,7 +71,6 @@ const Posts = () => {
                             <option value="Apple">Apple</option>
                             <option value="Samsung">Samsung</option>
                             <option value="Oppo">Oppo</option>
-                            <option value="Nokia">Nokia</option>
                             <option value="Nokia">Nokia</option>
                             <option value="Trimline Telephone">Trimline Telephone</option>
                             <option value="The Bakelite Phone">The Bakelite Phone</option>

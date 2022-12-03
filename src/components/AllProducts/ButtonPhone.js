@@ -26,7 +26,7 @@ const ButtonPhone = () => {
                     {
                         products.map(product =>
                             <Col key={product._id}>
-                                {/* ItemName, img, OriginalPrice, SellPrice, phoneUsedTime, timeOfPost, conditionType, category, description, purchesYear,sellerName */}
+                                
                                 <div className="card p-5">
                                     <img style={{ width: '18 rem', height: '18rem' }} src={product.img} className="card-img-top" alt="Pic Not get" />
                                     <div className="card-body">

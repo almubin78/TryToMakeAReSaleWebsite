@@ -45,7 +45,7 @@ const Menubar = () => {
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="me-auto">
-                            <Link className='mx-2 text-decoration-none text-white' to='/'>Home</Link>
+                            <Link className='mx-2 text-decoration-none text-white' to='/'>Home</Link>                       
                             
                            
                                 {isAdmin &&

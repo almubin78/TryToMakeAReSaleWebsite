@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React from 'react';
 import toast from 'react-hot-toast';
 import { useQuery } from '@tanstack/react-query';
 const MyProducts = () => {
@@ -32,20 +32,20 @@ const MyProducts = () => {
         fetch(`http://localhost:5000/posts/approved/${id}`, {
             method: 'PUT',
             headers: {
-                'content-type':'application/json',
+                'content-type': 'application/json',
 
                 authorization: `bearer ${localStorage.getItem('myToken')}`
             },
-            body:JSON.stringify({isApproved:'false'})
+            body: JSON.stringify({ isApproved: 'false' })
         })
-        .then(res=>res.json())
-        .then(data=>{
-            if(data.modifiedCount>0){
-                toast.success(`Your Post is approved successfully`);
-                refetch();
-            }
-            toast.error('You are not verified by Our admin')
-        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.modifiedCount > 0) {
+                    toast.success(`Your Post is approved successfully`);
+                    refetch();
+                }
+                
+            })
     }
     return (
         <div>
@@ -57,6 +57,7 @@ const MyProducts = () => {
                         <th scope="col">Name</th>
                         <th scope="col">Category</th>
                         <th scope="col">Condition Type</th>
+                        <th scope="col">Advertise</th>
                         <th scope="col">Status</th>
                         <th scope="col">Action</th>
                     </tr>
@@ -73,24 +74,34 @@ const MyProducts = () => {
                                 <th>
                                     {
                                         post.isApproved === true ?
-                                        <p>Posted</p>
-                                        : 
-                                        <button className='btn btn-info' onClick={() => handleSentToPost(post._id)}>Available</button>
+                                            <p>Posted</p>
+                                            :
+                                            <button
+                                                className='btn btn-info'
+                                                onClick={() => handleSentToPost(post._id)}
+
+                                            >Make Advertise</button>
+                                    }
+                                </th>
+                                <th>
+                                    {
+                                        post.isBooked === true ?
+                                            <p className='text-success'>BooKed</p>
+                                            :
+                                            <p className='text-warning'>Not Booked Yet</p>
+                                        
                                     }
                                 </th>
                                 <th>
                                     <button className='btn btn-info' onClick={() => handleDeletePosts(post._id)}>Delete</button>
 
                                 </th>
-
                             </tr>
                         )
                     }
-                    
+
                 </tbody>
             </table>
-
-                
         </div>
     );
 };
